@@ -1,0 +1,24 @@
+FROM alpine:3.9 as build
+
+ARG KUSTOMIZE_VERSION=2.1.0
+ARG YQ_VERSION=2.4.0
+ARG HELM_VERSION=2.14.1
+
+ADD https://github.com/kubernetes-sigs/kustomize/releases/download/v${KUSTOMIZE_VERSION}/kustomize_${KUSTOMIZE_VERSION}_linux_amd64 /output/kustomize.cmd
+COPY kustomize.wrapper /output/kustomize
+
+ADD https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64 /output/yq
+
+ADD https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-linux-amd64.tar.gz .
+RUN tar fvxz helm-v2.14.1-linux-amd64.tar.gz
+RUN mv linux-amd64/helm /output
+
+RUN chmod ugo+x /output/*
+
+FROM argoproj/argocd:latest
+
+USER root 
+COPY --from=build /output /usr/local/bin/
+
+USER argocd
+COPY kustomize /home/argocd/.config/kustomize
