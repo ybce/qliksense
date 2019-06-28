@@ -2,16 +2,9 @@
 
 ## Installation of kustomize
 
-THe version of kustomize being using is the v2.1 line, which as of this writing, is waiting to be released. In the meantime it is necesary to install from head with [Go] v1.10.1 or higher:
+THe version of kustomize being using is v2.1, can be installed with Homebrew:
 
-```
-go get sigs.k8s.io/kustomize
-```
-Make sure the GOPATH/bin is in your path:
-
-```
-export PATH=${GOPATH}/bin:${PATH}
-```
+ `brew install kustomize`
 
 You will also need (the go version of) yq installed, available from here (https://mikefarah.github.io/yq/])
 
