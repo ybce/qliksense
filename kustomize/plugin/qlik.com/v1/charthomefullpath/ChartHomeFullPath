@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+file=$1
+chartHome=`yq r "$file" chartHome`
+resource=`cat`
+name=`echo "$resource" | yq r - chartName`
+kind=`echo "$resource" | yq r - kind`
+chartHome=`echo "$resource" | yq r - chartHome`
+
+TMP_DIR=$(mktemp -d)
+if [ $kind == "HelmChart" ]; then
+  rm -fr $TMP_DIR/$name
+  cp -a "$chartHome/." $TMP_DIR/$name/
+fi
+echo "$resource" | yq w - chartHome $TMP_DIR

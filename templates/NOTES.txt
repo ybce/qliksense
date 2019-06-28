@@ -1,0 +1,35 @@
+{{- if .Values.devMode.enabled -}}
+_____ _____ _____ _____ _____ _____ _____ _____ _____
+***** Warning Dev Mode Enabled! ******
+You have set DevMode=true in your config, this uses an in cluster MongoDB (community edition) this should not be used for production use.
+Review the product documentation on how to specify an external MongoDB database at https://help.qlik.com
+{{- end }}
+{{- if .Values.messaging  }}{{- if .Values.messaging.nats }}{{- if .Values.messaging.nats.auth }}{{- if .Values.messaging.nats.auth.users }}
+{{ if eq (index .Values.messaging.nats.auth.users 0).password "clientPass" }}
+_____ _____ _____ _____ _____ _____ _____ _____ _____
+***** Warning default NATs auth password in use! ******
+messaging.nats.auth.users[0].password is configured to use the default. It is recommended to set this to a secure password value.
+{{ end }}
+{{ end }}{{ end }}{{ end }}{{ end }}
+{{- if .Values.messaging  }}{{- if .Values.messaging.nats }}{{- if .Values.messaging.nats.clusterAuth }}{{- if .Values.messaging.nats.clusterAuth.password }}
+{{ if eq .Values.messaging.nats.clusterAuth.password "clusterPass" }}
+_____ _____ _____ _____ _____ _____ _____ _____ _____
+***** Warning default NATs cluster password in use! ******
+messaging.nats.clusterAuth.password is configured to use the default. It is recommended to set this to a secure password value.
+{{ end }}
+{{ end }}{{ end }}{{ end }}{{ end }}
+{{- if .Values.encryption }}{{- if .Values.encryption.enabled }}
+{{ if not .Values.encryption.enabled }}
+_____ _____ _____ _____ _____ _____ _____ _____ _____
+***** Encryption is not configured! ******
+Encryption is not configured with an encryption backend. It is recommended that encryption is connected to Vault so data can be encrypted. If encryption is disabled and then enabled, any data added to the system before encryption was enabled may become inaccessible.
+{{- end }}
+{{ end }}{{ end }}
+You have successfully installed the Qlik Sense Enterprise on Kubernetes helm chart.
+Run "kubectl get pods" to check the start up progress
+
+NOTE: This Software may only be used in conjunction with a licensed version of Qlik Sense Enterprise.
+By downloading,installing or using this software, you agree any use is governed by the terms of the
+Qlik User License Agreement at https://www.qlik.com/us/legal/license-terms/qula-en or,
+if applicable, by the terms of an executed software license agreement with Qlik.
+© 2018 QlikTech International AB.  All Rights Reserved.

@@ -1,0 +1,919 @@
+apiVersion: qlik.com/v1
+kind: HelmValues
+metadata:
+  name: qliksense
+releaseName: qliksense
+releaseNamespace: qliksense
+values:
+  global:
+    ## Global Docker image registry
+    ## Please, note that this will override the image registry for all the images, including dependencies, configured to use the global value
+    # imageRegistry:
+    
+    ## Global ingress class used for all the qliksense ingresses as well as the nginx-ingress-controller. Change this if you have multiple controllers that might otherwise pick up on these ingresses
+    ingressClass: "qlik-nginx"
+
+    ## Global CA certificates - use this to supply a FULL CA certificate chain that your qliksense installation should trust
+    ## e.g. if you use a self-signed certificate on your identity provider
+    ##
+    # certs:
+      ## enable/ disable the usage of a global CA certificate
+      ##
+      # enabled: true
+
+      # configMap:
+        ## enable/ disable creating a CA certificate ConfigMap
+        ##
+        # create: true
+
+        ## A templated CA certificate configMap name based on the release name
+        ##
+        # name: "{{ .Release.Name }}-ca-certs"
+
+        ## The global CA certificate chain
+        ## This replaces any existing CA trust chain with the supplied one
+        ##
+        # certs: |+
+          # -----BEGIN CERTIFICATE-----
+          # MIIE7jCCAtYCCQCuMixnfSSR3zANBgkqhkiG9w0BAQsFADA5MQswCQYDVQQGEwJD
+          # QTELMAkGA1UECAwCT04xCzAJBgNVBAcMAk9UMRAwDgYDVQQDDAdleGFtcGxlMB4X
+          # DTE5MDMwNjE0NDkzOFoXDTIxMTIyNDE0NDkzOFowOTELMAkGA1UEBhMCQ0ExCzAJ
+          # BgNVBAgMAk9OMQswCQYDVQQHDAJPVDEQMA4GA1UEAwwHZXhhbXBsZTCCAiIwDQYJ
+          # KoZIhvcNAQEBBQADggIPADCCAgoCggIBAMVaX4gDNkJflE1xP7ZXAfAFZSGVLaj6
+          # U809NqiwmrQtj491qOnT6WJK7m389kyI78cd1XF35TJcuNAeFEDF8bT9qn+y4nQ3
+          # qRd70wAyX4rG3aEWZhdWZ/9NdWmNviLndpyVo37I++ZKcji58EODWdDZZeUH0ekT
+          # RVuBeTyRrd53gEa7rWYVln320QFAfFJZk+2R/PY3yZTXRNGcaTZnQND3NN2COJ3n
+          # uVM9tUQfA4jH37+jBlZv1wlxMFk7lBmYEkbiHgcAnExzEn5KTJ9Yxt80J83w7x8r
+          # XBY14FiyiNH4SutE9UitBYoIAIAQyMPeKichpYXbZSGrA+t47xIj1kniBK9i/RFb
+          # MYBBwQk/zTX+pp2vJUAfd9eUkpDs23BwE10u/YBYZot5AaT8/CaowmdPXgmN+soU
+          # vKshbLfuEpmVoFi50Yedxp8rTKuhN8QFoP79Fo6aKQFghqT+feLi8MYbS9QGd8Wb
+          # pzF9CBFod8qiKsNW+G0a/oJA2wRYSbz6Vu1gRfjV4VNXix1MxEFuGxF8Uo1wv7Sq
+          # evA3W/SNUxJ98X46L+fJs10owKYxy5EztV1Kn84WaeENe9e+xiATuWL1IbHni/fV
+          # Ff+QJnc7jzgT41VUUyPYvMguTGZST8CmvEfJN9orYTtfu/6lOgDpIkQQ3J2Ar5zf
+          # iPctWShtNrrXAgMBAAEwDQYJKoZIhvcNAQELBQADggIBAG6utIYY3C6SN4SPZB98
+          # 5Tza0Shm4Y48IKs0cZNXwm5gL3WgJl5dYN3xO6+aga4CIWfXpxOm9GPiylDjA3N6
+          # wLJz+CATF17PhvaeqQfCaC+xUCuagqqgNC3+ONsdLs2J6gyg8/uIc5eQ+yj7O9rv
+          # Rh3/MUd0FtjL2GubU8pj1PpyQH4hTpJ0+1FBXbsl44hso53P4pf78Ihk/KEIWKBh
+          # ASH5ksorVFTNJ5+AN7WEjNTMbQUTMVOnApNLcrSbjgAeRP4UBd1hc1gfT7fkiiFe
+          # w8LBMtwkMAUrCXsPgILHkHOBq2b5Lwl9aVYVlnjhOskWOgFIiL7rm0Gg7ANyAq38
+          # 61XOopGZOpMvR863m6n3wa37C67+KshRxUGnozjrBMSqAC0e+6yBQOWKN2xpjtM3
+          # Mx1mh6mHWp9mVIYTnPS4iPvf6J6nGer3megbMFgM68xzAMkv7t1rJHYvvVNoYIWy
+          # WZSxGt6hq0V3YiUIMEvH+EEYlJy2Acgg7eqtO8ykvzSJ0QEi00eUGZd1ZVb4HAKp
+          # 2YU1CuuRPUuJJBZktziepww1P5XKeG/tn/tzD28lJhdqxRjYPBnyAF/QkGfDNwcR
+          # Awg054QnLh3jRWGnswZbNsYeC7K29QEnDneCVEtIT4Yn9LHkWX44IMG9pK7uoXJZ
+          # ZhcctBf1xVjSS6TW2UCbP7+O
+          # -----END CERTIFICATE-----
+
+      # volume:
+        ## global.certs.volume.existingVolumeClaim mounts an existing volume to supply CA certificates into each pod.
+        # existingVolumeClaim:
+        ## global.certs.volume.hostPath mounts a CA certificate file or directory from the host node’s filesystem into the Pod
+        # hostPath:
+
+    ## Global persistence configuration for qliksense sub-charts
+    ##
+    # persistence:
+
+      ## global.persistence.storageClass defines the name of a global class of storage . This can be a pre-existing SC
+      ## .Values.persistence.storageClass if defined in a sub-chart will have precedence over this global SC value
+      ## If defined, storageClassName: <storageClass> in sub-charts PVCs
+      ## If set to "-", storageClassName: "", which disables dynamic provisioning
+      ## If undefined (the default) or set to null, no storageClassName spec is set, choosing the default storage class based on the provisioner
+      ## (gp2 on AWS, pd-standard on GKE, standard default on AKS)
+      ##
+      # storageClass: "-"
+
+      # internalStorageClass:
+        # Normally the storage class should be created outside this helm chart
+        # If we want to deploy a global storage class as part of the qliksense chart
+        # - Provide a storageClassName above.
+        # - set enabled true
+        # - provide a storage class definition below.
+
+        ## If enabled storage class will be configured as part of the qliksense chart.
+        ## If not enabled an external pre-existing storageClass can be used by providing storageClassName above.
+        # enabled: false
+
+        ## StorageClass definition
+        # definition: {}
+          ## Storage classes must have a provisioner that determines what volume plugin is used for provisioning PVs.
+          ## This field must be specified.
+          ## See https://kubernetes.io/docs/concepts/storage/storage-classes/
+          # provisioner: kubernetes.io/no-provisioner
+
+          ## Reclaim policy should normally be set to Retain to avoid loosing data when deleting this helm chart.
+          # reclaimPolicy: Retain
+
+          ## Persistent Volumes that are dynamically created by a storage class will have the mount options specified
+          ## in the mountOptions field of the class.
+          # mountOptions: {}
+
+          ## Storage classes have parameters that describe volumes belonging to the storage class.
+          ## Different parameters may be accepted depending on the provisioner.
+          # parameters: {}
+
+        ## Some example on how to define a StorageClass definition can be found below
+
+        ## AZURE-FILE EXAMPLE
+        ##
+        ## The following definition outlines an example of defining a storage class to utilize an azure RWM filesystem
+        # definition:
+        #   provisioner: kubernetes.io/azure-file
+        #   parameters:
+        #     skuName: Standard_LRS
+        #     location: eastus
+        #   mountOptions:
+        #     - dir_mode=0777
+        #     - file_mode=0777
+
+        ## AWS EFS EXAMPLE
+        ##
+        ## The following definition outlines an example of defining a storage class to utilize an AWS EFS RWM filesystem (assumes efs-provisioner installed in the cluster)
+        ## efs-provisioner: https://github.com/kubernetes-incubator/external-storage/tree/master/aws/efs
+        # definition:
+        #   provisioner: aws-efs
+        #   parameters:
+        #     type: gp2
+        #     iopsPerGB: "10"
+        #     fsType: ext4
+        #   mountOptions:
+        #     - dir_mode=0777
+        #     - file_mode=0777
+    mongodb:
+      ## set mongodb.uri when you want a secret created with the uri (i.e. you are not supplying your own secret)
+      uri:
+  image:
+    pullPolicy: IfNotPresent  
+  imagePullPolicy: IfNotPresent
+  mongodb:  # No charts should include the mongodb chart
+    enabled: false
+  ## devMode activates "devMode" for local development and deploys a mongodb chart (e.g. with minikube)
+  devMode:
+    enabled: false
+  editMode:
+    enabled: false
+  # Do not bring up messaging chart as a dependency of reloads chart
+  reloads_nats:
+    enabled: false
+## Default values for Collections Helm Chart.
+## This is a YAML-formatted file.
+## Declare variables to be passed into your templates.
+  subvalues:
+    audit:
+    ## Audit configuration for sub-chart
+      replicaCount: 1
+      mongodb:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+      ## audit resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    chronos:
+      ## chronos number of replicas should always be an odd number since there's a consensus
+      ## mechanism if more than one pod is deployed. Setting to 3 is enough for high availability.
+      replicaCount: 1
+
+      mongodb:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+      redis:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+      ## chronos resource limits
+      ##
+      settings:
+        resources:
+          limits:
+            cpu: "0"
+            memory: "0"
+          requests:
+            cpu: "0"
+            memory: "0"
+
+      ## Enables pod antiaffinity rule that sets a hard requirements for spreading chronos pods across
+      ## different kubernetes worker nodes. This should be enabled only if you're running more than
+      ## one chronos replica and if you have enough kubernetes worker nodes in your kubernetes cluster.
+      ## Example: if chronos replicaCount is set to 3, you should have at least 3 worker nodes in your
+      ## kubernetes cluster with enough resources available. If this is not the case, kubernetes will
+      ## refuse to schedule pods.
+      #
+      # podAntiAffinityEnabled: false
+    chronos-worker:
+      replicaCount: 1
+      redis:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+      ## chronos-worker resource limits
+      ##
+      service:
+        resources:
+          limits:
+            cpu: "0"
+            memory: "0"
+          requests:
+            cpu: "0"
+            memory: "0"
+
+        ## Enable the network policy that denies all external outboud traffic from chronos-worker pods
+        # denyExternalEgressTraffic: true
+    collections:
+    ## collections contains the configurations for the collections sub-chart
+      replicaCount: 1
+      mongodb:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+      config:
+        ## Access Control / rules enforcement setup
+        accessControl:
+          ## when enabled, rules are enforced
+          enabled: true
+      ## collections resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+      # ## collections.hpa - Horizontal pod autoscaler
+      # hpa:
+      #   ## collections.hpa.enabled - Toggle horizontal pod autoscaler
+      #   enabled: false
+    data-connector-odbc:
+    ## data-connector-odbc contains the configurations for the data-connector-odbc sub-chart
+      command:
+        replicaCount: 1
+      reload:
+        replicaCount: 1
+      ## data-connector-odbc resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    data-connector-qwc:
+    ## data-connector-qwc contains the configurations for the data-connector-qwc sub-chart
+      command:
+        replicaCount: 1
+      reload:
+        replicaCount: 1
+      ## data-connector-qwc resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+
+      redis:
+        enabled: false
+    data-connector-rest:
+    ## data-connector-rest contains the configurations for the data-connector-rest sub-chart
+      command:
+        replicaCount: 1
+      reload:
+        replicaCount: 1
+      ## data-connector-rest resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    data-prep:
+    ## data-prep contains the configuration for the data-prep sub chart
+      ## replicaCount is the number of data-prep replicas to deploy to the cluster
+      redis:
+        enabled: false
+      replicaCount: 1
+      
+      ## data-prep resource limits
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    data-rest-source:
+    ## data-rest-source contains the configurations for the data-rest-source sub-chart
+      replicaCount: 1
+      ## data-rest-source resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    dcaas:
+      redis:
+        enabled: false
+      ## dcaas contains the configurations for the dcaas sub-chart
+      replicaCount: 1
+      ## dcaas resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    dcaas-web:
+    ## dcaas-web contains the configurations for the dcaas-web sub-chart
+      replicaCount: 1
+      ## dcaas-web resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    edge-auth:
+    ## edge-auth contains the configurations for the edge-auth sub-chart and authentication
+      mongodb:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+      nats:  # set this to true to enable messaging
+        enabled: true
+      ## edge-auth resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    elastic-infra:
+      mongodb:
+        enabled: false
+      config:
+        qixLBEnabled: true
+      nginx-ingress:
+        ## RBAC support
+        ##
+        # rbac:
+          # create: true
+        # serviceAccount:
+          ## Specifies whether a ServiceAccount should be created
+          # create: false
+
+          ## The name of the ServiceAccount to use.
+          ## If not set and create is true, a name is generated using the fullname template
+          # name:
+        controller:
+          replicaCount: 1
+          ## elastic-infra nginx controller resource limits
+          ##
+          resources:
+            limits:
+              cpu: "0"
+              memory: "0"
+            requests:
+              cpu: "0"
+              memory: "0"
+
+          config:
+            ## configure this if qliksense is deployed behind a loadbalancer using proxy protocol
+            # use-proxy-protocol: "true"
+            ssl-redirect: "true"
+          # extraArgs:
+            ## supply your own certificate secret, containing both tls.crt and tls.key
+            # default-ssl-certificate: "default/nginx-ingress-tls"
+
+        ingress:
+          annotations:
+            ## The following annotations configure the max file sizes (and thus, max qvf app size)
+            #
+            nginx.ingress.kubernetes.io/proxy-body-size: 500m
+            nginx.org/client-max-body-size: 500m
+
+        defaultBackend:
+          replicaCount: 1
+          ## elastic-infra nginx defaultBackend resource limits
+          ##
+          resources:
+            limits:
+              cpu: "0"
+              memory: "0"
+            requests:
+              cpu: "0"
+              memory: "0"
+    engine:
+    ## engine contains the configurations for the Qlik Sense Engine
+      ## replicaCount is the number of engine replicas to deploy to the cluster
+      ## NOTE: the engine requires volumes that are readWriteMany in order to have more than 1 replica
+      replicaCount: 1
+
+      ## acceptEULA - Agree to the Qlik engine EULA in order to activate it
+      # acceptEULA: "yes"
+
+      ## license enables the full fledged engine - you will be required to supply a license in your tenant
+      license:
+        enabled: true
+
+      ## Engine resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+
+      ## Data connector configuration
+      ##
+      data:
+        remoteConfigEnabled: true
+    feature-flags:
+    ## feature-flags contains the configurations for the feature-flags sub-chart
+      replicaCount: 1
+      ## feature-flags resource limits
+      ##
+      service:
+        resources:
+          limits:
+            cpu: "0"
+            memory: "0"
+          requests:
+            cpu: "0"
+            memory: "0"
+    groups:
+    ## groups contains the configurations for the groups sub-chart
+      included: false
+      ## groups replicaCount - Number of replicas for groups pods
+      replicaCount: 1
+      ## groups resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+      mongodb:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+    hub:
+    ## hub contains the configurations for the hub sub-chart
+      replicaCount: 1
+      ## hub resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    identity-providers:
+    ## identity-providers contains the configurations for the identity-providers sub-chart
+      replicaCount: 1
+      nats:  # set this to true to enable messaging
+        enabled: true
+      mongodb:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+      ## identity-providers resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    insights:
+    ## insights contains the configurations for the insights sub-chart
+      replicaCount: 1
+      ## insights resource limits
+      ##
+      service:
+        resources:
+          limits:
+            cpu: "0"
+            memory: "0"
+          requests:
+            cpu: "0"
+            memory: "0"
+
+      mongodb:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+    keys:
+    ## keys contains the configurations for the keys sub-chart
+      replicaCount: 1
+
+      ## keys resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    licenses:
+    ## licenses contains the configurations for the licenses sub-chart
+      replicaCount: 1
+      mongodb:
+        enabled: false
+
+      ## licenses resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    encryption:
+    ## encryption contains the configurations for Encryption sub-chart
+      enabled: false
+      # encryption.replicaCount - number of instances of the encryption service
+      replicaCount: 1
+      backend:
+        ## Which backend to enable [vault]
+        # type: vault
+        ## URI used to reach the backend
+        ##
+        # uri:
+
+        ## Auth settings used with the backend
+        # auth:
+          ## Type of authentication to use [token,kubernetes]
+          # type:
+          ## Token to use
+          # token:
+          ## Should encryption auto-renew the token
+          # tokenRenew:
+          ## How often should the token be auto-renewed
+          # tokenRenewFrequency:
+          ## How long should the renewed token be good for
+          # tokenRenewTTL:
+      # Configure serviceAccount if using kubernetes authentication for Vault
+      # serviceAccount:
+        # Specifies whether a service account should be created. Set to false if you're using one that already exists in the cluster
+        # create: true
+        # Name of the service account to use.
+        # If not set and create is true, a name is generated using the fullname template
+        # name:
+    locale:
+      replicaCount: 1
+      ## locale resource limits
+      ##
+      service:
+        resources:
+          limits:
+            cpu: "0"
+            memory: "0"
+          requests:
+            cpu: "0"
+            memory: "0"
+    management-console:
+    ## management-console contains the configurations for the management-console sub-chart
+      replicaCount: 1
+      ## management-console resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    messaging:
+    ## messaging contains the configurations for NATS and NATS-Streaming
+      nats:
+        # messaging.nats.replicaCount - number of replicas for nats
+        replicaCount: 1
+
+        auth:
+          # setting these values to nil to remove default values
+          user: ~
+          password: ~
+
+          # messaging.nats.auth.users is used to authenticate nats-streaming
+          # be sure to change this value for a production deploy
+          users:
+            - user: natsClient
+              password: clientPass
+
+
+        clusterAuth:
+          # messaging.nats.clusterAuth.password is used to authenticate nats-to-nats cluster communication
+          # be sure to change this value for a production deploy
+          password: clusterPass
+
+        resources:
+          limits:
+            cpu: "0"
+            memory: "0"
+          requests:
+            cpu: "0"
+            memory: "0"
+
+      nats-streaming:
+        # messaging.nats-streaming.replicaCount - supported values are only 3 and 5. WARNING: This value cannot be changed once set
+        replicaCount: 3
+        resources:
+          limits:
+            cpu: "0"
+            memory: "0"
+          requests:
+            cpu: "0"
+            memory: "0"
+    mongodb:
+    ## MongoDB configuration for sub-charts
+      image:
+        ## Bitnami MongoDB image tag
+        ## ref: https://hub.docker.com/r/bitnami/mongodb/tags/
+        ## This value overrides the mongo image tag in chart v.4.5.0 (tag: 4.0.3-debian-9)
+        tag: 3.6.12
+
+      ## mongodb.enabled should never be set to `true` in this chart.
+      enabled: false
+
+      ## disable password for local dev mode
+      usePassword: false
+
+      securityContext:
+        enabled: false
+        runAsUser: ~
+
+      persistence:   # disable persistence mode for local dev
+        enabled: false
+    odag:
+    ## odag contains the configurations for the odag sub-chart
+      # odag.replicaCount - number of odag pods in the deployment
+      replicaCount: 1
+      ## odag resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+
+      mongodb:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+
+      nats:
+        enabled: true  # set this to true to enable messaging
+        authEnabled: true
+    precedents:
+    ## precedents contains the configurations for the precedents sub-chart
+      included: false
+    redis:
+    ## Redis configuration for sub-charts
+      ## Remove sub-chart specific redis
+      enabled: false
+
+      replicaCount: 1
+      usePassword: false
+      # existingSecret: my-secret-name
+      # cluster:
+      #   enabled: true
+      #   slaveCount: 2
+
+      master:
+        securityContext:
+          enabled: false
+        statefulset:
+          ## Updating all Pods in a StatefulSet, in reverse ordinal order, while respecting the StatefulSet guarantees
+          updateStrategy: RollingUpdate
+      slave:
+        securityContext:
+          enabled: false
+
+      metrics:
+        enabled: false
+    policy-decisions:
+    ## policy-decisions contains the configurations for the policy-decisions sub-chart
+      replicaCount: 1
+      ## policy-decisions resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+
+      mongodb:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+    qix-datafiles:
+    ## qix-datafiles contains the configurations for the qix-datafiles sub-chart
+      # qix-datafiles.replicaCount - number of reload pods in the deployment
+      replicaCount: 1
+      ## qix-datafiles resource limits
+      ##
+      # qix-datafiles.resources - resource limits/requests for qix-datafiles pods
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+      mongodb:
+        enabled: false  # set this to false to avoid attempting to create separate secrets
+    qix-data-connection:
+    ## qix-data-connection contains the configurations for the qix-data-connection sub-chart
+      replicaCount: 1
+      ## qix-data-connection resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+      mongodb:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+      elasticEncryption:
+        enable: false
+      datafiles:
+        ## Enable the datafiles connections
+        enabled: true
+        useQixDatafiles: "true"
+    qix-sessions:
+    ## qix-sessions contains the configurations for the qix-sessions sub-chart
+      replicaCount: 1
+      redis:
+        master:
+          service:
+            type: ClusterIP
+          ## Resource requests and limits for master node
+          resources:
+            requests:
+              memory: "0"
+              cpu: "0"
+            limits:
+              memory: "0"
+              cpu: "0"
+        slave:
+          service:
+            type: ClusterIP
+          ## Resource requests and limits for slave nodes
+          resources:
+            requests:
+              memory: "0"
+              cpu: "0"
+            limits:
+              memory: "0"
+              cpu: "0"
+    reloads:
+    ## reloads contains the configurations for the reloads sub-chart
+      # reloads.replicaCount - number of reload pods in the deployment
+      replicaCount: 1
+      ## reloads resource limits
+      ##
+      # reloads.resources - resource limits/requests for reloads pods
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+      mongodb:
+        enabled: false  # set this to false to avoid attempting to create separate secrets
+      nats:
+        # Do not bring up messaging chart as a dependency
+        enabled: false
+        # Authenticate to nats
+        authEnabled: true
+    reload-tasks:
+    ## reload-tasks contains the configurations for the reload-tasks sub-chart
+      # reload-tasks.replicaCount - number of reload pods in the deployment
+      replicaCount: 1
+      ## reload-tasks resource limits
+      ##
+      # reload-tasks.resources - resource limits/requests for reload-tasks pods
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+      mongodb:
+        enabled: false  # set this to false to avoid attempting to create separate secrets
+    reporting:
+    ## reporting contains the configurations for the reporting sub-chart
+      replicaCount: 1
+      redis:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+    resource-library:
+    ## resource-library contains the configurations for the resource-library sub-chart
+      replicaCount: 1
+      ## resource-library resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+      mongodb:
+        enabled: false
+    sense-client:
+    ## sense-client contains the configurations for the sense-client sub-chart
+      replicaCount: 1
+
+      ## sense-client resource limits
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+    temporary-contents:
+    ## temporary-contents contains the configurations for the temporary-contents sub-chart
+      replicaCount: 1
+      ## temporary-contents resource limits
+      ##
+      service:
+        resources:
+          limits:
+            cpu: "0"
+            memory: "0"
+          requests:
+            cpu: "0"
+            memory: "0"
+
+      mongodb:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+    spaces:
+    ## spaces contains the configurations for the spaces sub-chart
+      replicaCount: 1
+      ## spaces resource limits and requests
+      ##
+      resources:
+        limits:
+          cpu: "0"
+          memory: "0"
+        requests:
+          cpu: "0"
+          memory: "0"
+      # ## spaces.hpa - Horizontal pod autoscaler
+      # hpa:
+      #   ## space.hpa.enabled - Toggle horizontal pod autoscaler
+      #   enabled: false
+      mongodb:
+        enabled: false
+    tenants:
+    ## tenants contains the configurations for the tenants sub-chart
+      replicaCount: 1
+      ## tenants resource limits
+      ##
+      service:
+        resources:
+          limits:
+            cpu: "0"
+            memory: "0"
+          requests:
+            cpu: "0"
+            memory: "0"
+
+      mongodb:  # set this to false to avoid attempting to create separate secrets
+        enabled: false
+    users:
+    ## users contains the configurations for the users sub-chart
+      replicaCount: 1
+      nats:  # set this to true to enable messaging
+        enabled: true
+      ## users resource limits
+      ##
+      service:
+        resources:
+          limits:
+            cpu: "0"
+            memory: "0"
+          requests:
+            cpu: "0"
+            memory: "0"
+
+      mongodb:  # set this to false to avoid attempting to create separate secrets
+        enabled: false

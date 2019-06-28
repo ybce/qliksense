@@ -1,0 +1,13 @@
+{{- if .Values.global -}}
+  {{- if .Values.global.persistence -}}
+    {{- if .Values.global.persistence.internalStorageClass -}}
+      {{- if .Values.global.persistence.internalStorageClass.enabled -}}
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: {{ .Values.global.persistence.storageClass }}
+{{ toYaml .Values.global.persistence.internalStorageClass.definition }}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

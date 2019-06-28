@@ -1,0 +1,19 @@
+{{- if .Values.global  }}{{- if .Values.global.certs  }}{{- if .Values.global.certs.configMap }}{{- if .Values.global.certs.configMap.create }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: {{ .Release.Name | quote }}
+    chart: {{ .Release.Name | quote }}
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+  name: {{ tpl .Values.global.certs.configMap.name . | quote }}
+data:
+  certs: |+
+{{- if .Values.global.certs.configMap.certs }}
+{{ .Values.global.certs.configMap.certs | indent 4 }}
+{{ end }}
+
+{{- end }}{{- end }}{{- end }}{{- end }}
+
+
