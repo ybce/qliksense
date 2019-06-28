@@ -93,7 +93,7 @@ if [ -z "$releaseName" ] || [ "$releaseName" == "null" ]; then
 fi
 
 if [ -z "$releaseNamespace" ] || [ "$releaseNamespace" == "null" ]; then
-  releaseName="default"
+  releaseNamespace="default"
 fi
 
 if [ -z "$extraArgs" ] || [ "$extraArgs" == "null" ]; then
@@ -130,10 +130,12 @@ doHelm template \
 
 #Allow pathes in origin repository to be applied
 if [ ! -z "$chartPatches" ] && [ "$chartPatches" != "null" ]; then
-  cp helmoutput.yaml "$chartHome/$chartName/$chartPatches"
-  for f in "$chartHome/$chartName/$chartPatches/*.yaml"; do
-    sed -i '' 's/[*]/'"$releaseName"'/g' $f
+  temp=$(mktemp -u)
+  for f in $chartHome/$chartName/$chartPatches/*.yaml; do
+    sed 's/[*]/'"$releaseName"'/g' "$f" > "$temp"
+    mv "$temp" "$f"
   done
+  cp helmoutput.yaml "$chartHome/$chartName/$chartPatches"
   yq w -i "$chartHome/$chartName/$chartPatches/kustomization.yaml" "resources[+]" "helmoutput.yaml"
   kustomize build "$chartHome/$chartName/$chartPatches" > helmoutput.yaml
 fi
