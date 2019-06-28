@@ -1,4 +1,4 @@
-[![Argo Image](https://circleci.com/gh/qlik-oss/qliksense.svg?style=svg)](https://circleci.com/gh/qlik-oss/qliksense)
+Argo Image [![CircleCI](https://circleci.com/gh/qlik-oss/qliksense.svg?style=svg)](https://circleci.com/gh/qlik-oss/qliksense)
 
 # Qlik Sense Enterprise
 
