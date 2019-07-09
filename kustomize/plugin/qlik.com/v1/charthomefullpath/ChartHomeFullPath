@@ -6,8 +6,11 @@ chartHome=`yq r "$file" chartHome`
 resource=`cat`
 name=`echo "$resource" | yq r - chartName`
 kind=`echo "$resource" | yq r - kind`
-chartHome=`echo "$resource" | yq r - chartHome`
-
+# Where helm charts are unpacked.
+if [ -z "$chartHome" ] || [ "$chartHome" == "null" ]; then
+  chartHome=`echo "$resource" | yq r - chartHome`
+fi
+echo $chartHome > /tmp/chartHome.txt
 TMP_DIR=$(mktemp -d)
 if [ $kind == "HelmChart" ]; then
   rm -fr $TMP_DIR/$name
