@@ -10,10 +10,9 @@ kind=`echo "$resource" | yq r - kind`
 if [ -z "$chartHome" ] || [ "$chartHome" == "null" ]; then
   chartHome=`echo "$resource" | yq r - chartHome`
 fi
-echo $chartHome > /tmp/chartHome.txt
 TMP_DIR=$(mktemp -d)
 if [ $kind == "HelmChart" ]; then
   rm -fr $TMP_DIR/$name
-  cp -a "$chartHome/$name" $TMP_DIR/$name
+  cp -a "$chartHome" $TMP_DIR/$name
 fi
-echo "$resource" | yq w - chartHome $TMP_DIR
+echo "$resource" | yq w - chartHome $TMP_DIR/$name

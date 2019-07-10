@@ -21,6 +21,7 @@ function parseyq {
   chartPatches=`yq r "$file" chartPatches`
 }
 
+
 #TMP_DIR=$(mktemp -d)
 TMP_DIR=$(dirname $(mktemp -u))
 
@@ -33,7 +34,7 @@ fi
 
 # Where helm charts are unpacked.
 if [ -z "$chartHome" ] || [ "$chartHome" == "null" ]; then
-  chartHome=$TMP_DIR/charts
+  chartHome=$TMP_DIR/$chartName
 fi
 
 if [ -z "$helmBin" ] || [ "$helmBin" == "null" ]; then
@@ -107,15 +108,18 @@ function doHelm {
 # The init command is extremely chatty
 doHelm init --client-only >& /dev/null
 
-if [ ! -d "$chartHome/$chartName" ]; then
+if [ ! -d "$chartHome" ]; then
   doHelm fetch --untar \
       --untardir $chartHome \
       --repo $chartRepo \
       $chartVersionExp \
       $chartName
+  mv $chartHome/$chartName $chartHome/$chartName-tmp
+  cp -a $chartHome/$chartName-tmp/. $chartHome/ 
+  rm -fr $chartHome/$chartName-tmp
 fi
 
-doHelm dep build $chartHome/$chartName >& /dev/null
+doHelm dep build $chartHome >& /dev/null
 
 doHelm template \
     $valuesFromDefault \
@@ -125,21 +129,21 @@ doHelm template \
     --name $releaseName \
     --namespace $releaseNamespace \
     $extraArgs \
-    $chartHome/$chartName > helmoutput.yaml
+    $chartHome > helmoutput.yaml
 
 
 #Allow pathes in origin repository to be applied
 if [ ! -z "$chartPatches" ] && [ "$chartPatches" != "null" ]; then
   temp=$(mktemp -u)
-  for f in $chartHome/$chartName/$chartPatches/*.yaml; do
+  for f in $chartHome/$chartPatches/*.yaml; do
     sed 's/[*]/'"$releaseName"'/g' "$f" > "$temp"
     mv "$temp" "$f"
   done
-  cp helmoutput.yaml "$chartHome/$chartName/$chartPatches"
-  yq w -i "$chartHome/$chartName/$chartPatches/kustomization.yaml" "resources[+]" "helmoutput.yaml"
-  kustomize build "$chartHome/$chartName/$chartPatches" > helmoutput.yaml
+  cp helmoutput.yaml "$chartHome/$chartPatches"
+  yq w -i "$chartHome/$chartPatches/kustomization.yaml" "resources[+]" "helmoutput.yaml"
+  kustomize build "$chartHome/$chartPatches" > helmoutput.yaml
 fi
 
 cat helmoutput.yaml
-rm -f helmoutput.yaml
+#rm -f helmoutput.yaml
 #/bin/rm -rf $TMP_DIR
