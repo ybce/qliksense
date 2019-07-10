@@ -145,5 +145,5 @@ if [ ! -z "$chartPatches" ] && [ "$chartPatches" != "null" ]; then
 fi
 
 cat helmoutput.yaml
-#rm -f helmoutput.yaml
+rm -f helmoutput.yaml
 #/bin/rm -rf $TMP_DIR
