@@ -137,10 +137,12 @@ if [ ! -z "$chartPatches" ] && [ "$chartPatches" != "null" ]; then
   temp=$(mktemp -u)
   for f in $chartHome/$chartPatches/*.yaml; do
     if [ -z "${releaseName##*$chartName*}" ]; then
-      sed 's/[*]//g' "$f" > "$temp"
+      sed 's/[?]//g' "$f" > "$temp"
     else
-      sed 's/[*]/'"$releaseName"'-/g' "$f" > "$temp"
+      sed 's/[?]/'"$releaseName"'-/g' "$f" > "$temp"
     fi
+    mv "$temp" "$f"
+    sed 's/[*]/'"$releaseName"'-/g' "$f" > "$temp"
     mv "$temp" "$f"
   done
   cp helmoutput.yaml "$chartHome/$chartPatches"
@@ -149,5 +151,5 @@ if [ ! -z "$chartPatches" ] && [ "$chartPatches" != "null" ]; then
 fi
 
 cat helmoutput.yaml
-#rm -f helmoutput.yaml
+rm -f helmoutput.yaml
 #/bin/rm -rf $TMP_DIR
