@@ -136,7 +136,11 @@ doHelm template \
 if [ ! -z "$chartPatches" ] && [ "$chartPatches" != "null" ]; then
   temp=$(mktemp -u)
   for f in $chartHome/$chartPatches/*.yaml; do
-    sed 's/[*]/'"$releaseName"'/g' "$f" > "$temp"
+    if [ -z "${releaseName##*$chartName*}" ]; then
+      sed 's/[*]//g' "$f" > "$temp"
+    else
+      sed 's/[*]/'"$releaseName"'-/g' "$f" > "$temp"
+    fi
     mv "$temp" "$f"
   done
   cp helmoutput.yaml "$chartHome/$chartPatches"
