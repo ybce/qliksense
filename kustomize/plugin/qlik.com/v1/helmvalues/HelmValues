@@ -8,8 +8,11 @@ chart=`yq r "$file" chartName`
 releaseName=`yq r "$file" releaseName`
 releaseNamespace=`yq r "$file" releaseNamespace`
 FILEVAL="$(mktemp)"
-main=$(cat "$file" | yq r - values | yq d - subvalues | yq p - values)
-subvalues=$(cat "$file" | yq r - values | yq  r - subvalues)
+#make chartValues first level object
+#main=$(cat "$file" | yq r - values | yq d - chartValues | yq p - values)
+#chartValues=$(cat "$file" | yq r - values | yq  r - chartValues)
+main=$(cat "$file" | yq r - values | yq p - values)
+chartValues=$(cat "$file" | yq  r - chartValues)
 allresources=`cat`
 # Is document stream!
 count=0
@@ -22,16 +25,16 @@ while [ $retval -eq 0 ]; do
     if [ $kind == "HelmChart" ]; then
       if [ -z $chart ] || [ "$chart" == "null" ] || [ "$name" == "$chart" ]; then 
         echo "$main" > "$FILEVAL"
-        if [ "$overwrite" == "true" ]; then
+        if [ "$overwrite" != "false" ]; then
           allresources=$(echo "$allresources" | yq m -d $count -x - "$FILEVAL")
         else
           allresources=$(echo "$allresources" | yq m -d $count - "$FILEVAL")
         fi
-        if [ ! -z "$subvalues" ] && [ "$subvalues" != "null" ]; then
-          values=$(echo "$subvalues" | yq r - "$name")
+        if [ ! -z "$chartValues" ] && [ "$chartValues" != "null" ]; then
+          values=$(echo "$chartValues" | yq r - "$name")
           if [ ! -z "$values" ] && [ "$values" != "null" ]; then
             echo "$values" | yq p - values > "$FILEVAL"
-            if [ "$overwrite" == "true" ]; then
+            if [ "$overwrite" != "false" ]; then
               allresources=$(echo "$allresources" | yq m -d $count -x - "$FILEVAL")
             else
               allresources=$(echo "$allresources" | yq m -d $count - "$FILEVAL")
