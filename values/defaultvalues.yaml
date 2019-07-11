@@ -155,10 +155,9 @@ values:
   # Do not bring up messaging chart as a dependency of reloads chart
   reloads_nats:
     enabled: false
-## Default values for Collections Helm Chart.
-## This is a YAML-formatted file.
-## Declare variables to be passed into your templates.
-chartValues:
+  ## Default values for Collections Helm Chart.
+  ## This is a YAML-formatted file.
+  ## Declare variables to be passed into your templates.
   audit:
   ## Audit configuration for sub-chart
     replicaCount: 1
