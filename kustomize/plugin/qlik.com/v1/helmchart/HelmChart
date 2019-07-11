@@ -145,11 +145,26 @@ if [ ! -z "$chartPatches" ] && [ "$chartPatches" != "null" ]; then
     sed 's/[*]/'"$releaseName"'-/g' "$f" > "$temp"
     mv "$temp" "$f"
   done
-  cp helmoutput.yaml "$chartHome/$chartPatches"
-  yq w -i "$chartHome/$chartPatches/kustomization.yaml" "resources[+]" "helmoutput.yaml"
-  kustomize build "$chartHome/$chartPatches" > helmoutput.yaml
+
+  cp "$chartHome/$chartPatches/kustomization.yaml" kustomization.orig.yaml
+  count=0
+  while true; do 
+    cp helmoutput.yaml "$chartHome/$chartPatches"
+    yq d -i "$chartHome/$chartPatches/kustomization.yaml" "patchesJson6902"
+    yq d -i "$chartHome/$chartPatches/kustomization.yaml" "resources"
+    patch=`yq r kustomization.orig.yaml patchesJson6902[$count]`
+    if [ ! -z "$patch" ] && [ "$patch" != "null" ]; then
+      echo "$patch" | yq p - patchesJson6902[+] | yq m -i "$chartHome/$chartPatches/kustomization.yaml" -
+    else
+      break
+    fi 
+    yq w -i "$chartHome/$chartPatches/kustomization.yaml" "resources[+]" "helmoutput.yaml"
+    out=$(kustomize build "$chartHome/$chartPatches" 2> /dev/null) && echo "$out" > helmoutput.yaml
+    count=$(expr $count + 1)
+  done
 fi
 
 cat helmoutput.yaml
 rm -f helmoutput.yaml
+rm -f kustomization.orig.yaml
 #/bin/rm -rf $TMP_DIR
