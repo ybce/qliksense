@@ -2,7 +2,6 @@ apiVersion: qlik.com/v1
 kind: HelmValues
 metadata:
   name: qliksense
-releaseName: qliksense
 releaseNamespace: qliksense
 values:
   global:
@@ -145,8 +144,7 @@ values:
   image:
     pullPolicy: IfNotPresent  
   imagePullPolicy: IfNotPresent
-  mongodb:  # No charts should include the mongodb chart
-    enabled: false
+
   ## devMode activates "devMode" for local development and deploys a mongodb chart (e.g. with minikube)
   devMode:
     enabled: false
