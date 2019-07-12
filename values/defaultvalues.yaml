@@ -141,6 +141,8 @@ values:
     mongodb:
       ## set mongodb.uri when you want a secret created with the uri (i.e. you are not supplying your own secret)
       uri:
+
+  ### COMMON CONIG ALL CHARTS ###
   image:
     pullPolicy: IfNotPresent  
   imagePullPolicy: IfNotPresent
@@ -149,10 +151,120 @@ values:
   devMode:
     enabled: false
   editMode:
-    enabled: false
+    enabled: true
   # Do not bring up messaging chart as a dependency of reloads chart
   reloads_nats:
     enabled: false
+
+
+  # replicaCount: 3
+  config:
+    resources:
+      features: http://feature-flags:8080/v1
+      featureFlags: http://feature-flags:8080/v1
+      identityProviders: http://identity-providers:8080/v0
+      identityProvidersExt: http://identity-providers-ext:8080/v1
+      users: http://users:8080/v1
+      tenants: http://tenants:8080/v1
+      groups: http://groups:8080/v1
+      keys: http://keys:8080/v1
+      cors: http://tenants:8080/v1
+      licenses: http://licenses:9200/v1
+      internalTokens: http://edge-auth:8080/v1
+    pdsURI: http://policy-decisions:5080
+    accessControl:
+      pdsURI: http://policy-decisions:5080
+    pds:
+      uri: http://policy-decisions:5080
+    licensesUrl: http://licenses:9200/
+    license:
+      uri: http://licenses:9200
+    spacesUrl: http://spaces:6080/
+    appServiceURI: http://engine:9076
+    auth:
+      jwksURI: http://keys:8080/v1/keys/qlik.api.internal
+    token:
+      uri: http://edge-auth:8080/v1/internal-tokens
+    messaging:
+      enabled: true
+      nats:
+        addr: nats://messaging-nats-client:4222
+        tokenAuth:
+          url: http://edge-auth:8080/v1/internal-tokens
+      stan:
+        clusterID: messaging-nats-streaming-cluster
+      podLabel:
+        key: messaging-nats-client
+        value: true
+  data:
+    connectorUrl: http://dcaas:9026
+    connectionUrl: http://qix-data-connection:9011
+  accessControl:
+    url: http://policy-decisions:5080
+  service:
+    usersUri: http://users:8080
+    datafileshost: datafiles
+    qixdatafileshost: qix-datafiles
+    precedentshost: precedents
+    engineaddress: qix-sessions
+    sessionsURL: http://qix-sessions:8080
+    engineURL: http://engine:9076
+    reloadsURL: http://reloads:8080
+    edgeauthURL: http://edge-auth:8080
+    usersURL: http://users:8080
+    collectionsURL: http://collections:8080
+  spaces:
+    uri: http://spaces:6080
+  temporarycontents:
+    uri: http://temporary-contents:6080
+  featureFlagsURI: http://feature-flags:8080
+  featureflags:
+    uri: http://feature-flags:8080
+    url: http://feature-flags:8080/v0/features
+  license:
+    uri: http://licenses:9200
+  encryption:
+    uri: http://encryption:8080
+  elasticEncryption:
+    uri: http://encryption.default.svc.cluster.local:8080
+    url: http://encryption:8080
+  datafiles:
+    qixDatafilesURI: http://qix-datafiles:8080
+  tokenAuth:
+    url: http://edge-auth:8080/v1/internal-tokens
+  serviceJwt:
+    internalTokens: http://edge-auth:8080/v1
+    authUri: http://edge-auth.default.svc.cluster.local:8080
+  jwks:
+    uri: http://keys:8080/v1/keys/qlik.api.internal
+  jwt:
+    uri: http://keys:8080/v1/keys/qlik.api.internal
+  auth:
+    jwksURI: http://keys:8080/v1/keys/qlik.api.internal
+
+
+  #### INDIVIDUAL CHARTS ####
+  mongodb:
+    enabled: false
+    uri: mongodb://elastic-infra-mongodb:27017/qliksense
+    ssl: false
+    sslValidate: false
+    checkServerIdentity: false
+  nats:
+    url: http://messaging-nats-client:4222
+    enabled: true
+    release: messaging
+    podLabel:
+      key: messaging-nats-client
+      value: true
+  stan:
+    enabled: true
+    uri: nats://messaging-nats-client:4222
+    cluster: messaging-nats-streaming-cluster
+    trace: true
+  ingress:
+    authURL: http://edge-auth.default.svc.cluster.local:8080/v1/auth
+
   ## Default values for Collections Helm Chart.
   ## This is a YAML-formatted file.
   ## Declare variables to be passed into your templates.
