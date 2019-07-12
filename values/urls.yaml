@@ -78,6 +78,9 @@ values:
     featureFlags:
       uri: http://feature-flags:8080
       url: http://feature-flags:8080/v0/features
+    featureflags:
+      uri: http://feature-flags:8080
+      url: http://feature-flags:8080/v0/features
     license:
       uri: http://licenses:9200
     encryption:
