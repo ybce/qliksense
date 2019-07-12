@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - defaultvalues.yaml
 patchesStrategicMerge:
+  - urls.yaml
 #  - devmode.yaml
 #  - acceptEULA.yaml

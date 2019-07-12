@@ -3,4 +3,4 @@ kind: Kustomization
 transformers:
   - ../../values
 resources:
-- redis.yaml 
+  - github.com/qlik-oss/redis-resources//generators
