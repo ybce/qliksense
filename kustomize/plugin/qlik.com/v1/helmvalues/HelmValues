@@ -8,11 +8,7 @@ chart=`yq r "$file" chartName`
 releaseName=`yq r "$file" releaseName`
 releaseNamespace=`yq r "$file" releaseNamespace`
 FILEVAL="$(mktemp)"
-#make chartValues first level object
-#main=$(cat "$file" | yq r - values | yq d - chartValues | yq p - values)
-#chartValues=$(cat "$file" | yq r - values | yq  r - chartValues)
 main=$(cat "$file" | yq r - values | yq p - values)
-chartValues=$(cat "$file" | yq  r - chartValues)
 allresources=`cat`
 # Is document stream!
 count=0
@@ -25,8 +21,6 @@ while [ $retval -eq 0 ]; do
     if [ $kind == "HelmChart" ]; then
       # Helm way
       # If the chart Name is specified apply the whole enchilada
-      echo "$chart" >> /tmp/values.txt
-      echo "$name" >> /tmp/values.txt
       if [ -z $chart ] || [ "$chart" == "null" ] || [ "$name" == "$chart" ]; then
         echo "$main" > "$FILEVAL"
         if [ "$overwrite" != "false" ]; then
@@ -37,10 +31,8 @@ while [ $retval -eq 0 ]; do
       fi
       # Is the chart listed as a first level sub-chart? Yeah? then apply
       values=$(echo "$main" | yq r - values."$name")
-
       if [ ! -z "$values" ] && [ "$values" != "null" ]; then
         echo "$values" | yq p - values > "$FILEVAL"
-        cat "$FILEVAL" > /tmp/fileval.txt
         if [ "$overwrite" != "false" ]; then
           allresources=$(echo "$allresources" | yq m -d $count -x - "$FILEVAL")
         else
