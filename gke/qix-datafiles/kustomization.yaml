@@ -3,4 +3,4 @@ kind: Kustomization
 generators:
   - generators
 patchesStrategicMerge:
-  - redis-secret.yaml
+  - mongodb-secret.yaml
