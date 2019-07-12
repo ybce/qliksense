@@ -218,7 +218,7 @@ values:
   temporarycontents:
     uri: http://temporary-contents:6080
   featureFlagsURI: http://feature-flags:8080
-  featureflags:
+  featureFlags:
     uri: http://feature-flags:8080
     url: http://feature-flags:8080/v0/features
   license:
@@ -791,10 +791,11 @@ values:
   redis:
   ## Redis configuration for sub-charts
     ## Remove sub-chart specific redis
-    enabled: false
+    enabled: true
 
     replicaCount: 1
     usePassword: false
+    existingSecret: "redis-secret"
     # existingSecret: my-secret-name
     # cluster:
     #   enabled: true
