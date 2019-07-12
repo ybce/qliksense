@@ -45,19 +45,6 @@ if [ ! -z "$values" ] && [ "$values" != "null" ]; then
   echo "$values" > "$valuesGenFile"
 fi
 
-if [ -f "../values.yaml" ]; then
-  valuesFromDefault="--values ../values.yaml"
-  if [ -f "values.yaml" ]; then
-    valuesFromChart="--values values.yaml"
-  fi 
-else
-  if [ -f "values.yaml" ]; then
-    valuesFromDefault="--values values.yaml"
-  fi
-  if [ -f "$chartName/values.yaml" ]; then
-    valuesFromChart="--values $chartName/values.yaml"
-  fi
-fi
 
 if [ ! -z "$valuesFrom" ] && [ "$valuesFrom" != "null" ]; then
   valuesFrom="--values $valuesFrom"
@@ -122,8 +109,6 @@ fi
 doHelm dep build $chartHome >& /dev/null
 
 doHelm template \
-    $valuesFromDefault \
-    $valuesFromChart \
     $valuesFrom \
     --values $valuesGenFile \
     --name $releaseName \

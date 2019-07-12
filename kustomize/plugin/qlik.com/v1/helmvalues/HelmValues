@@ -23,41 +23,35 @@ while [ $retval -eq 0 ]; do
     kind=`echo "$allresources" | yq r -d $count - kind`
     name=`echo "$allresources" | yq r -d $count - chartName`
     if [ $kind == "HelmChart" ]; then
-      if [ -z $chart ] || [ "$chart" == "null" ] || [ "$name" == "$chart" ]; then 
+      # Helm way
+      # If the chart Name is specified apply the whole enchilada
+      echo "$chart" >> /tmp/values.txt
+      echo "$name" >> /tmp/values.txt
+      if [ -z $chart ] || [ "$chart" == "null" ] || [ "$name" == "$chart" ]; then
         echo "$main" > "$FILEVAL"
         if [ "$overwrite" != "false" ]; then
           allresources=$(echo "$allresources" | yq m -d $count -x - "$FILEVAL")
         else
           allresources=$(echo "$allresources" | yq m -d $count - "$FILEVAL")
         fi
-        # Helm way
-        values=$(echo "$main" | yq r - "$name")
-        if [ ! -z "$values" ] && [ "$values" != "null" ]; then
-          echo "$values" | yq p - values > "$FILEVAL"
-          if [ "$overwrite" != "false" ]; then
-            allresources=$(echo "$allresources" | yq m -d $count -x - "$FILEVAL")
-          else
-            allresources=$(echo "$allresources" | yq m -d $count - "$FILEVAL")
-          fi
+      fi
+      # Is the chart listed as a first level sub-chart? Yeah? then apply
+      values=$(echo "$main" | yq r - values."$name")
+
+      if [ ! -z "$values" ] && [ "$values" != "null" ]; then
+        echo "$values" | yq p - values > "$FILEVAL"
+        cat "$FILEVAL" > /tmp/fileval.txt
+        if [ "$overwrite" != "false" ]; then
+          allresources=$(echo "$allresources" | yq m -d $count -x - "$FILEVAL")
+        else
+          allresources=$(echo "$allresources" | yq m -d $count - "$FILEVAL")
         fi
-        # throw this away at some point
-        if [ ! -z "$chartValues" ] && [ "$chartValues" != "null" ]; then
-          values=$(echo "$chartValues" | yq r - "$name")
-          if [ ! -z "$values" ] && [ "$values" != "null" ]; then
-            echo "$values" | yq p - values > "$FILEVAL"
-            if [ "$overwrite" != "false" ]; then
-              allresources=$(echo "$allresources" | yq m -d $count -x - "$FILEVAL")
-            else
-              allresources=$(echo "$allresources" | yq m -d $count - "$FILEVAL")
-            fi
-          fi
-        fi
-        if [ ! -z $releaseNamespace ] && [ "$releaseNamespace" != "null" ]; then
-          allresources=$(echo "$allresources" | yq w -d $count - releaseNamespace "$releaseNamespace")
-        fi
-        if [ ! -z $releaseName ] && [ "$releaseName" != "null" ]; then
-          allresources=$(echo "$allresources" | yq w -d $count - releaseName "$releaseName")
-        fi
+      fi
+      if [ ! -z $releaseNamespace ] && [ "$releaseNamespace" != "null" ]; then
+        allresources=$(echo "$allresources" | yq w -d $count - releaseNamespace "$releaseNamespace")
+      fi
+      if [ ! -z $releaseName ] && [ "$releaseName" != "null" ]; then
+        allresources=$(echo "$allresources" | yq w -d $count - releaseName "$releaseName")
       fi
     fi
   fi
