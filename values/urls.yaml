@@ -4,121 +4,124 @@ metadata:
   name: qliksense
 values:
   # URLS used for all services in component autonomyous mode
-    config:
-      resources:
-        features: http://feature-flags:8080/v1
-        featureFlags: http://feature-flags:8080/v1
-        identityProviders: http://identity-providers:8080/v0
-        identityProvidersExt: http://identity-providers-ext:8080/v1
-        users: http://users:8080/v1
-        tenants: http://tenants:8080/v1
-        groups: http://groups:8080/v1
-        keys: http://keys:8080/v1
-        cors: http://tenants:8080/v1
-        licenses: http://licenses:9200/v1
-        internalTokens: http://edge-auth:8080/v1
-      stan:
-        clusterID: "messaging-nats-streaming-cluster"
-      pdsURI: http://policy-decisions:5080
-      featureFlagsURI: http://feature-flags:8080
-      accessControl:
-        pdsURI: http://policy-decisions:5080
-      pds:
-        uri: http://policy-decisions:5080
-      licensesUrl: http://licenses:9200/
-      license:
-        uri: http://licenses:9200
-      spacesUrl: http://spaces:6080/
-      appServiceURI: http://engine:9076
-      nats:
-        servers: nats://messaging-nats-client:4222
-      auth:
-        jwksURI: http://keys:8080/v1/keys/qlik.api.internal
-      token:
-        uri: http://edge-auth:8080/v1/internal-tokens
-      tokenAuth:
-        url: http://edge-auth:8080/v1/internal-tokens
-      messaging:
-        enabled: true
-        nats:
-          addr: nats://messaging-nats-client:4222
-          tokenAuth:
-            url: http://edge-auth:8080/v1/internal-tokens
-        stan:
-          clusterID: messaging-nats-streaming-cluster
-        podLabel:
-          key: messaging-nats-client
-          value: true
-    data:
-      connectorUrl: http://dcaas:9026
-      connectionUrl: http://qix-data-connection:9011
-    accessControl:
-      url: http://policy-decisions:5080
-    nats:
-      servers: nats://messaging-nats-client:4222
+  config:
+    resources:
+      features: http://feature-flags:8080/v1
+      featureFlags: http://feature-flags:8080/v1
+      identityProviders: http://identity-providers:8080/v0
+      identityProvidersExt: http://identity-providers-ext:8080/v1
+      users: http://users:8080/v1
+      tenants: http://tenants:8080/v1
+      groups: http://groups:8080/v1
+      keys: http://keys:8080/v1
+      cors: http://tenants:8080/v1
+      licenses: http://licenses:9200/v1
+      internalTokens: http://edge-auth:8080/v1
     stan:
       clusterID: "messaging-nats-streaming-cluster"
-    service:
-      usersUri: http://users:8080d
-      datafileshost: datafiles
-      qixdatafileshost: qix-datafiles
-      precedentshost: precedents
-      engineaddress: qix-sessions
-      sessionsURL: http://qix-sessions:8080
-      engineURL: http://engine:9076
-      reloadsURL: http://reloads:8080
-      edgeauthURL: http://edge-auth:8080
-      usersURL: http://users:8080
-      collectionsURL: http://collections:8080
-    spaces:
-      uri: http://spaces:6080
-    temporarycontents:
-      uri: http://temporary-contents:6080
+    pdsURI: http://policy-decisions:5080
     featureFlagsURI: http://feature-flags:8080
-    featureFlags:
-      uri: http://feature-flags:8080
-      url: http://feature-flags:8080/v0/features
-    featureflags:
-      uri: http://feature-flags:8080
-      url: http://feature-flags:8080/v0/features
+    accessControl:
+      pdsURI: http://policy-decisions:5080
+    pds:
+      uri: http://policy-decisions:5080
+    licensesUrl: http://licenses:9200/
     license:
       uri: http://licenses:9200
-    encryption:
-      uri: http://encryption:8080
-    elasticEncryption:
-      uri: http://encryption.default.svc.cluster.local:8080
-      url: http://encryption:8080
-    datafiles:
-      qixDatafilesURI: http://qix-datafiles:8080
-    tokenAuth:
-      url: http://edge-auth:8080/v1/internal-tokens
-    serviceJwt:
-      internalTokens: http://edge-auth:8080/v1
-      authUri: http://edge-auth.default.svc.cluster.local:8080
-    jwks:
-      uri: http://keys:8080/v1/keys/qlik.api.internal
-    jwt:
-      uri: http://keys:8080/v1/keys/qlik.api.internal
-      jwksURI: http://keys:8080/v1/keys/qlik.api.internal
-      authUrl: "http://edge-auth:8080/v1/internal-tokens"
+    spacesUrl: http://spaces:6080/
+    appServiceURI: http://engine:9076
+    nats:
+      servers: nats://messaging-nats-client:4222
     auth:
       jwksURI: http://keys:8080/v1/keys/qlik.api.internal
-      serviceToken:
-        authURL: "http://edge-auth:8080/v1/internal-tokens"
-    env:
-      connector_service: "data-connector-rest-rld:data-connector-rest-cmd:50060 data-connector-qwc-rld:data-connector-qwc-cmd:50060 data-connector-odbc-rld:data-connector-odbc-cmd:50060 data-connector-sap-sql-rld:data-connector-sap-sql-cmd:50060 qix-datafiles:50051 data-connector-sfdc-rld:data-connector-sfdc-cmd:50060"
-      connection_service: "http://qix-data-connection:9011"
-      space_service: "http://spaces:6080"
-      featureflagUrl: http://feature-flags:8080
-    ingress:
-      authURL: http://edge-auth.default.svc.cluster.local:8080/v1/auth
-    collections:
-      uri: "http://collections:8080"
+    token:
+      uri: http://edge-auth:8080/v1/internal-tokens
+    tokenAuth:
+      url: http://edge-auth:8080/v1/internal-tokens
     messaging:
+      enabled: true
       nats:
-        server: "messaging-nats-client"
+        addr: nats://messaging-nats-client:4222
+        tokenAuth:
+          url: http://edge-auth:8080/v1/internal-tokens
       stan:
-        clusterID: "messaging-nats-streaming-cluster"
-    engine:
-      dynamicReload:
-        reloadEngineResource: engine-reload
+        clusterID: messaging-nats-streaming-cluster
+      podLabel:
+        key: messaging-nats-client
+        value: true
+  data:
+    connectorUrl: http://dcaas:9026
+    connectionUrl: http://qix-data-connection:9011
+  accessControl:
+    url: http://policy-decisions:5080
+  nats:
+    servers: nats://messaging-nats-client:4222
+    extraArgs:
+      - --jwt_users_file=/opt/bitnami/nats/users.json
+      - --jwt_auth_url=http://keys:8080/v1/keys/qlik.api.internal
+  stan:
+    clusterID: "messaging-nats-streaming-cluster"
+  service:
+    usersUri: http://users:8080d
+    datafileshost: datafiles
+    qixdatafileshost: qix-datafiles
+    precedentshost: precedents
+    engineaddress: qix-sessions
+    sessionsURL: http://qix-sessions:8080
+    engineURL: http://engine:9076
+    reloadsURL: http://reloads:8080
+    edgeauthURL: http://edge-auth:8080
+    usersURL: http://users:8080
+    collectionsURL: http://collections:8080
+  spaces:
+    uri: http://spaces:6080
+  temporarycontents:
+    uri: http://temporary-contents:6080
+  featureFlagsURI: http://feature-flags:8080
+  featureFlags:
+    uri: http://feature-flags:8080
+    url: http://feature-flags:8080/v0/features
+  featureflags:
+    uri: http://feature-flags:8080
+    url: http://feature-flags:8080/v0/features
+  license:
+    uri: http://licenses:9200
+  encryption:
+    uri: http://encryption:8080
+  elasticEncryption:
+    uri: http://encryption.default.svc.cluster.local:8080
+    url: http://encryption:8080
+  datafiles:
+    qixDatafilesURI: http://qix-datafiles:8080
+  tokenAuth:
+    url: http://edge-auth:8080/v1/internal-tokens
+  serviceJwt:
+    internalTokens: http://edge-auth:8080/v1
+    authUri: http://edge-auth.default.svc.cluster.local:8080
+  jwks:
+    uri: http://keys:8080/v1/keys/qlik.api.internal
+  jwt:
+    uri: http://keys:8080/v1/keys/qlik.api.internal
+    jwksURI: http://keys:8080/v1/keys/qlik.api.internal
+    authUrl: "http://edge-auth:8080/v1/internal-tokens"
+  auth:
+    jwksURI: http://keys:8080/v1/keys/qlik.api.internal
+    serviceToken:
+      authURL: "http://edge-auth:8080/v1/internal-tokens"
+  env:
+    connector_service: "data-connector-rest-rld:data-connector-rest-cmd:50060 data-connector-qwc-rld:data-connector-qwc-cmd:50060 data-connector-odbc-rld:data-connector-odbc-cmd:50060 data-connector-sap-sql-rld:data-connector-sap-sql-cmd:50060 qix-datafiles:50051 data-connector-sfdc-rld:data-connector-sfdc-cmd:50060"
+    connection_service: "http://qix-data-connection:9011"
+    space_service: "http://spaces:6080"
+    featureflagUrl: http://feature-flags:8080
+  ingress:
+    authURL: http://edge-auth.default.svc.cluster.local:8080/v1/auth
+  collections:
+    uri: "http://collections:8080"
+  messaging:
+    nats:
+      server: "messaging-nats-client"
+    stan:
+      clusterID: "messaging-nats-streaming-cluster"
+  engine:
+    dynamicReload:
+      reloadEngineResource: engine-reload
