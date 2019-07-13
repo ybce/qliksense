@@ -157,12 +157,6 @@ values:
     enabled: false
 
   #### INDIVIDUAL CHARTS ####
-  mongodb:
-    enabled: false
-    uri: mongodb://elastic-infra-mongodb:27017/qliksense
-    ssl: false
-    sslValidate: false
-    checkServerIdentity: false
   nats:
     url: http://messaging-nats-client:4222
     enabled: true
@@ -660,6 +654,10 @@ values:
           memory: "0"
   mongodb:
   ## MongoDB configuration for sub-charts
+    uri: mongodb://mongodb:27017/qliksense
+    ssl: false
+    sslValidate: false
+    checkServerIdentity: false
     image:
       ## Bitnami MongoDB image tag
       ## ref: https://hub.docker.com/r/bitnami/mongodb/tags/

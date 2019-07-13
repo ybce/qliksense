@@ -1,9 +1,0 @@
-apiVersion: qlik.com/v1
-kind: HelmChart
-metadata:
-  name: redis
-chartHome: .
-chartRepo: https://kubernetes-charts.storage.googleapis.com
-chartName: redis
-chartVersion: 6.0.1
-releaseName: redis 
