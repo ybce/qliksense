@@ -334,7 +334,7 @@ values:
         memory: "0"
   dcaas:
     redis:
-      enabled: false
+      enabled: true
     ## dcaas contains the configurations for the dcaas sub-chart
     replicaCount: 1
     ## dcaas resource limits
