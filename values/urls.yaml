@@ -62,7 +62,7 @@ values:
   stan:
     clusterID: "messaging-nats-streaming-cluster"
   service:
-    usersUri: http://users:8080d
+    usersUri: http://users:8080
     datafileshost: datafiles
     qixdatafileshost: qix-datafiles
     precedentshost: precedents
