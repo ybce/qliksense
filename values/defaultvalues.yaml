@@ -140,7 +140,7 @@ values:
         #     - file_mode=0777
     mongodb:
       ## set mongodb.uri when you want a secret created with the uri (i.e. you are not supplying your own secret)
-      uri:
+      uri: ""
 
   ### COMMON CONIG ALL CHARTS ###
   image:
