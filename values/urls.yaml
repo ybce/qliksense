@@ -73,6 +73,11 @@ values:
     edgeauthURL: http://edge-auth:8080
     usersURL: http://users:8080
     collectionsURL: http://collections:8080
+    spacesUri: http://spaces:6080
+    featureFlagsUri: http://feature-flags:8080
+    policyDecisionsUri: http://policy-decisions:5080
+    encryptionUri: http://encryption:8080
+
   spaces:
     uri: http://spaces:6080
   temporarycontents:
