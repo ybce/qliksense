@@ -169,8 +169,6 @@ values:
     uri: nats://messaging-nats-client:4222
     cluster: messaging-nats-streaming-cluster
     trace: true
-  ingress:
-    authURL: http://edge-auth.default.svc.cluster.local:8080/v1/auth
 
   ## Default values for Collections Helm Chart.
   ## This is a YAML-formatted file.
