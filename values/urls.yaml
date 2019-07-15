@@ -96,6 +96,10 @@ values:
   elasticEncryption:
     uri: http://encryption.default.svc.cluster.local:8080
     url: http://encryption:8080
+  features:
+    uri: http://feature-flags:8080/v1/features
+  pds:
+    uri: http://policy-decisions:5080
   datafiles:
     qixDatafilesURI: http://qix-datafiles:8080
   tokenAuth:
