@@ -8,16 +8,7 @@ items:
     releaseNamespace: argoqliksense
     values:
       ingress:
-        authURL: http://edge-auth.argoqliksense.svc.cluster.local:8080/v1/auth
+        authURL: http://edge-auth.argoqliksense.svc.cluster.local.:8080/v1/auth
       config:
-        qixSessionsURI: http://qix-sessions.argoqliksense.svc.cluster.local:8080/v1/engine-sessions
-        dataprepURI: http://data-prep.argoqliksense.svc.cluster.local:9072/session/route
-        resources:
-          features: http://feature-flags.argoqliksense.svc.cluster.local:8080/v1
-          identityProviders: http://identity-providers.argoqliksense.svc.cluster.local:8080/v0
-          identityProvidersExt: http://identity-providers-ext.argoqliksense.svc.cluster.local:8080/v1
-          users: http://users.argoqliksense.svc.cluster.local:8080/v1
-          tenants: http://tenants.argoqliksense.svc.cluster.local:8080/v1
-          groups: http://groups.argoqliksense.svc.cluster.local:8080/v1
-          keys: http://keys.argoqliksense.svc.cluster.local:8080/v1
-          cors: http://tenants.argoqliksense.svc.cluster.local:8080/v1
+        qixSessionsURI: http://qix-sessions.argoqliksense.svc.cluster.local.:8080/v1/engine-sessions
+        dataprepURI: http://data-prep.argoqliksense.svc.cluster.local.:9072/session/route
