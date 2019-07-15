@@ -1,5 +1,11 @@
-apiVersion: qlik.com/v1
-kind: HelmValues
-metadata:
-  name: qliksense
-releaseNamespace: argoqliksense
+iapiVersion: v1
+kind: List
+items:
+  - apiVersion: qlik.com/v1
+    kind: HelmValues
+    metadata:
+      name: qliksense
+    releaseNamespace: argoqliksense
+    values:
+      ingress:
+        authURL: http://edge-auth.argoqliksense.svc.cluster.local.:8080/v1/auth
