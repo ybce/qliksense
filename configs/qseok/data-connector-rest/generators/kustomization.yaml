@@ -3,4 +3,4 @@ kind: Kustomization
 transformers:
   - ../../values
 resources:
-  - ../../../generators/data-connector-rest
+  - ../../../../generators/data-connector-rest

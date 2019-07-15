@@ -3,4 +3,4 @@ kind: Kustomization
 transformers:
   - ../../values
 resources:
-  - ../../../generators/data-connector-odbc
+  - ../../../../generators/data-connector-odbc

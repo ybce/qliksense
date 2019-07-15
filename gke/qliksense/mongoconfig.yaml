@@ -1,7 +1,0 @@
-- op: remove
-  path: /data
-- op: add
-  path: /stringData
-  value:
-    mongodb-uri: 
-      mongodb://mongodb:27017/qsefe?ssl=false

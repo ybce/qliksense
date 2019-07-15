@@ -3,6 +3,5 @@ kind: Kustomization
 resources:
   - qliksense.yaml
 transformers:
-  - ../../base
+  - charthome.yaml
   - ../../values
-

@@ -3,5 +3,4 @@ kind: HelmChart
 metadata:
   name: qliksense
 chartName: qliksense
-chartHome: ../../
 releaseName: qliksense
