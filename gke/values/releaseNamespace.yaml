@@ -9,3 +9,6 @@ items:
     values:
       ingress:
         authURL: http://edge-auth.argoqliksense.svc.cluster.local.:8080/v1/auth
+      config:
+        qixSessionsURI: http://qix-sessions.argoqliksense.svc.cluster.local:8080/v1/engine-sessions
+        dataprepURI: http://data-prep.argoqliksense.svc.cluster.local:9072/session/route
