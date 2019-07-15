@@ -4,4 +4,4 @@ metadata:
   name: qliksense
 values:
   devMode:
-    enabled: true
+    enabled: false

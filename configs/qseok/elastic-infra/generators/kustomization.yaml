@@ -3,4 +3,4 @@ kind: Kustomization
 transformers:
   - ../../values
 resources:
-  - ../../../generators/elastic-infra
+  - ../../../../generators/elastic-infra

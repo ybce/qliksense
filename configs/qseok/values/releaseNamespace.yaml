@@ -1,5 +1,14 @@
-apiVersion: qlik.com/v1
-kind: HelmValues
-metadata:
-  name: qliksense
-releaseNamespace: argoqliksense
+iapiVersion: v1
+kind: List
+items:
+  - apiVersion: qlik.com/v1
+    kind: HelmValues
+    metadata:
+      name: qliksense
+    releaseNamespace: qliksense
+    values:
+      ingress:
+        authURL: http://edge-auth.qliksense.svc.cluster.local.:8080/v1/auth
+      config:
+        qixSessionsURI: http://qix-sessions.qliksense.svc.cluster.local.:8080/v1/engine-sessions
+        dataprepURI: http://data-prep.qliksense.svc.cluster.local.:9072/session/route

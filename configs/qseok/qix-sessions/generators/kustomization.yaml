@@ -3,4 +3,4 @@ kind: Kustomization
 transformers:
   - ../../values
 resources:
-  - ../../../generators/qix-sessions
+  - ../../../../generators/qix-sessions

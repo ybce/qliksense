@@ -1,4 +1,0 @@
-commonLabels:
-  release: qliksense
-resources:
-  - base.yaml
