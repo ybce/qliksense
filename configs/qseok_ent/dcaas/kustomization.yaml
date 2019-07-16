@@ -3,4 +3,4 @@ kind: Kustomization
 generators:
   - generators
 patchesStrategicMerge:
-  - dcaas-redis-secret.yaml
+  - redis-secret.yaml

@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: qliksense
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: qixmanager.qlik.com
+    kind: CustomResourceDefinition
+  destinations:
+  - namespace: qliksense
+    server: https://kubernetes.default.svc
+  sourceRepos:
+  - https://github.com/qlik-oss/qliksense.git

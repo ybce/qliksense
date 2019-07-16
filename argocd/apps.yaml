@@ -1,0 +1,643 @@
+apiVersion: v1
+kind: List
+items:
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: audit 
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/audit
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: chronos
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/chronos
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: chronos-worker
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/chronos-worker
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: collections
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/collections
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: data-connector-odbc
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/data-connector-odbc
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: data-connector-qwc
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/data-connector-qwc
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: data-connector-rest
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/data-connector-rest
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: data-prep
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/data-prep
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: data-rest-source
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/data-rest-source
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: dcaas
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/dcaas
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: dcaas-web
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/dcaas-web
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: edge-auth
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/edge-auth
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: elastic-infra
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/elastic-infra
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: encryption
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/encryption
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: engine
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/engine
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: feature-flags
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/feature-flags
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: groups
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/groups
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: hub
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/hub
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: identity-providers
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/identity-providers
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: keys
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/keys
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: licenses
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/licenses
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: locale
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/locale
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: management-console
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/management-console
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: messaging
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/messaging
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: mongodb
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/mongodb
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: odag
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/odag
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: policy-decisions
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/policy-decisions
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: qix-data-connection
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/qix-data-connection
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: qix-datafiles
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/qix-datafiles
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: qix-sessions
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/qix-sessions
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: qliksense
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/qliksense
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: redis
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/redis
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: reporting
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/reporting
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: resource-library
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/resource-library
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: resources
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: resources
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: sense-client
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/sense-client
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: spaces
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/spaces
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: temporary-contents
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/temporary-contents
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: tenants
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/tenants
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
+  - apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: users
+      namespace: argocd
+    spec:
+      destination:
+        namespace: qliksense
+        server: https://kubernetes.default.svc
+      project: qliksense
+      source:
+        path: configs/qseok_devmode/users
+        repoURL: https://github.com/qlik-oss/qliksense.git
+      syncPolicy:
+        automated:
+          prune: true
