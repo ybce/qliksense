@@ -26,6 +26,7 @@ resources:
   - locale
   - management-console
   - messaging
+  - mongodb
   - odag
   - policy-decisions
   - qix-data-connection
