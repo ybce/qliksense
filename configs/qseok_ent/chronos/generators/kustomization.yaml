@@ -3,7 +3,5 @@ kind: Kustomization
 transformers:
   - ../../values
 resources:
-  - ../../../../generators/dcaas
+  - ../../../../generators/chronos
   - ../../../../generators/redis
-patchesStrategicMerge:
-  - releaseName.yaml

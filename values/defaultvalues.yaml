@@ -704,7 +704,6 @@ values:
 
     replicaCount: 1
     usePassword: false
-    existingSecret: "redis-secret"
     # existingSecret: my-secret-name
     # cluster:
     #   enabled: true

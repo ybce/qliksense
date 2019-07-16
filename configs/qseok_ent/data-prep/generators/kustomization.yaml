@@ -3,7 +3,7 @@ kind: Kustomization
 transformers:
   - ../../values
 resources:
-  - ../../../../generators/dcaas
+  - ../../../../generators/data-prep
   - ../../../../generators/redis
 patchesStrategicMerge:
   - releaseName.yaml

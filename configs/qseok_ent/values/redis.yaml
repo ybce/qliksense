@@ -1,0 +1,9 @@
+apiVersion: qlik.com/v1
+kind: HelmValues
+metadata:
+  name: qliksense 
+releaseName: chronos
+values:
+  redis:
+    enabled: true
+    usePassword: true
