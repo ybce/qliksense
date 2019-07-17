@@ -2,4 +2,4 @@ apiVersion: qlik.com/v1
 kind: HelmValues
 metadata:
   name: qliksense
-releaseNamespace: argoqliksense
+releaseNamespace: qliksense
