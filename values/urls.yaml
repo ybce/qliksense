@@ -40,8 +40,8 @@ values:
       uri: http://edge-auth:8080/v1/internal-tokens
     tokenAuth:
       url: http://edge-auth:8080/v1/internal-tokens
-    qixSessionsURI: http://qix-sessions.qliksense.svc.cluster.local.:8080/v1/engine-sessions
-    dataprepURI: http://data-prep.qliksense.svc.cluster.local.:9072/session/route
+    qixSessionsURI: http://qix-sessions.qliksense.svc.cluster.local:8080/v1/engine-sessions
+    dataprepURI: http://data-prep.qliksense.svc.cluster.local:9072/session/route
     messaging:
       enabled: true
       nats:
@@ -134,7 +134,7 @@ values:
     space_service: "http://spaces:6080"
     featureflagUrl: http://feature-flags:8080
   ingress:
-    authURL: http://edge-auth.qliksense.svc.cluster.local.:8080/v1/auth
+    authURL: http://edge-auth.qliksense.svc.cluster.local:8080/v1/auth
   collections:
     uri: "http://collections:8080"
   messaging:
