@@ -14,6 +14,7 @@ items:
       source:
         path: configs/qseok_devmode/audit
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -30,6 +31,7 @@ items:
       source:
         path: configs/qseok_devmode/chronos
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -46,6 +48,7 @@ items:
       source:
         path: configs/qseok_devmode/chronos-worker
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -62,6 +65,7 @@ items:
       source:
         path: configs/qseok_devmode/collections
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -78,6 +82,7 @@ items:
       source:
         path: configs/qseok_devmode/data-connector-odbc
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -94,6 +99,7 @@ items:
       source:
         path: configs/qseok_devmode/data-connector-qwc
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -110,6 +116,7 @@ items:
       source:
         path: configs/qseok_devmode/data-connector-rest
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -126,6 +133,7 @@ items:
       source:
         path: configs/qseok_devmode/data-prep
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -142,6 +150,7 @@ items:
       source:
         path: configs/qseok_devmode/data-rest-source
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -158,6 +167,7 @@ items:
       source:
         path: configs/qseok_devmode/dcaas
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -174,6 +184,7 @@ items:
       source:
         path: configs/qseok_devmode/dcaas-web
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -190,6 +201,7 @@ items:
       source:
         path: configs/qseok_devmode/edge-auth
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -206,6 +218,7 @@ items:
       source:
         path: configs/qseok_devmode/elastic-infra
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -222,6 +235,7 @@ items:
       source:
         path: configs/qseok_devmode/encryption
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -238,6 +252,7 @@ items:
       source:
         path: configs/qseok_devmode/engine
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -254,6 +269,7 @@ items:
       source:
         path: configs/qseok_devmode/feature-flags
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -270,6 +286,7 @@ items:
       source:
         path: configs/qseok_devmode/groups
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -286,6 +303,7 @@ items:
       source:
         path: configs/qseok_devmode/hub
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -302,6 +320,7 @@ items:
       source:
         path: configs/qseok_devmode/identity-providers
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -318,6 +337,7 @@ items:
       source:
         path: configs/qseok_devmode/keys
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -334,6 +354,7 @@ items:
       source:
         path: configs/qseok_devmode/licenses
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -350,6 +371,7 @@ items:
       source:
         path: configs/qseok_devmode/locale
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -366,6 +388,7 @@ items:
       source:
         path: configs/qseok_devmode/management-console
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -382,6 +405,7 @@ items:
       source:
         path: configs/qseok_devmode/messaging
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -398,6 +422,7 @@ items:
       source:
         path: configs/qseok_devmode/mongodb
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -414,6 +439,7 @@ items:
       source:
         path: configs/qseok_devmode/odag
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -430,6 +456,7 @@ items:
       source:
         path: configs/qseok_devmode/policy-decisions
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -446,6 +473,7 @@ items:
       source:
         path: configs/qseok_devmode/qix-data-connection
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -462,6 +490,7 @@ items:
       source:
         path: configs/qseok_devmode/qix-datafiles
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -478,6 +507,7 @@ items:
       source:
         path: configs/qseok_devmode/qix-sessions
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -494,6 +524,7 @@ items:
       source:
         path: configs/qseok_devmode/qliksense
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -510,6 +541,7 @@ items:
       source:
         path: configs/qseok_devmode/redis
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -526,6 +558,7 @@ items:
       source:
         path: configs/qseok_devmode/reporting
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -542,6 +575,7 @@ items:
       source:
         path: configs/qseok_devmode/resource-library
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -558,6 +592,7 @@ items:
       source:
         path: resources
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -574,6 +609,7 @@ items:
       source:
         path: configs/qseok_devmode/sense-client
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -590,6 +626,7 @@ items:
       source:
         path: configs/qseok_devmode/spaces
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -606,6 +643,7 @@ items:
       source:
         path: configs/qseok_devmode/temporary-contents
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -622,6 +660,7 @@ items:
       source:
         path: configs/qseok_devmode/tenants
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
@@ -638,6 +677,7 @@ items:
       source:
         path: configs/qseok_devmode/users
         repoURL: https://github.com/qlik-oss/qliksense.git
+        targetRevision: "demo"
       syncPolicy:
         automated:
           prune: true
