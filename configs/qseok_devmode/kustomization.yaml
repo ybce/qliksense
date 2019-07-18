@@ -40,3 +40,4 @@ resources:
   - temporary-contents
   - tenants
   - users
+  - qliksense
