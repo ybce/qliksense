@@ -9,7 +9,7 @@ values:
       features: http://feature-flags:8080/v1
       identityProviders: http://identity-providers:8080/v0
       identityProvidersExt: http://identity-providers-ext:8080/v1
-      users: http://user:8080/v1
+      users: http://users:8080/v1
       tenants: http://tenants:8080/v1
       groups: http://groups:8080/v1
       keys: http://keys:8080/v1
