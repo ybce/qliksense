@@ -7,31 +7,7 @@ Public private key pairs are used to sign/verify JWTs securing communication bet
 
 ```
 openssl ecparam -name secp384r1 -genkey -noout -out private.key
-```
-
-`private.key` file should look like this:
-
-```
------BEGIN EC PRIVATE KEY-----
-MIGkAgEBBDAyeaHDAmmYP1XEzHNTtKuiLNANkSZyIeODb+Z/GL0ETTGLPP//MJaA
-yCddYSSYthugBwYFK4EEACKhZANiAAQomckQ4dHx0p5c4/AUHVuvw4A8yYTYBWe+
-Ky2tL5tuSc4MCLRQSJ81uySzoEECL7Vu+QatJCaaVwJ6mI/F00BYacaTJ3vEGF7p
-nXRxdFq5ahjyKDCA/637qLbQX9OTsUg=
------END EC PRIVATE KEY-----
-```
-
-```
 openssl ec -in private.key -pubout -outform PEM -out public.pem
-```
-
-`public.pem` file should look like this:
-
-```
------BEGIN PUBLIC KEY-----
-MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKJnJEOHR8dKeXOPwFB1br8OAPMmE2AVn
-vistrS+bbknODAi0UEifNbsks6BBAi+1bvkGrSQmmlcCepiPxdNAWGnGkyd7xBhe
-6Z10cXRauWoY8igwgP+t+6i20F/Tk7FI
------END PUBLIC KEY-----
 ```
 
 2. Convert PEM format public key to JWKS:
