@@ -106,7 +106,9 @@ if [ ! -d "$chartHome" ]; then
   rm -fr $chartHome/$chartName-tmp
 fi
 
-doHelm dep build $chartHome >& /dev/null
+rm -f $chartHome/requirements.*
+## No longer need to build helm dependencies 
+#doHelm dep build $chartHome >& /dev/null
 
 doHelm template \
     $valuesFrom \
