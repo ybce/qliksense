@@ -22,13 +22,13 @@ That should output an output like this:
 {"keys":[{"kty":"EC","kid":"Le1dRAA8XGFExzgeDVWWAZT91K74cwax5Fsroo0EKmc","crv":"P-384","x":"KJnJEOHR8dKeXOPwFB1br8OAPMmE2AVnvistrS-bbknODAi0UEifNbsks6BBAi-1","y":"bvkGrSQmmlcCepiPxdNAWGnGkyd7xBhe6Z10cXRauWoY8igwgP-t-6i20F_Tk7FI"}]}
 ```
 
-Keep the pem format and add a new field in the keys object above named `pem` so your final keys object should look like this:
+Add a new field in the keys object above named `pem` where the value is the PEM formatted public key `public.pem` that was generated in step 1, so your final keys object should look like this:
 
 ```
 {"keys":[{"kty":"EC","kid":"Le1dRAA8XGFExzgeDVWWAZT91K74cwax5Fsroo0EKmc","crv":"P-384","x":"KJnJEOHR8dKeXOPwFB1br8OAPMmE2AVnvistrS-bbknODAi0UEifNbsks6BBAi-1","y":"bvkGrSQmmlcCepiPxdNAWGnGkyd7xBhe6Z10cXRauWoY8igwgP-t-6i20F_Tk7FI","pem":"-----BEGIN PUBLIC KEY-----\nMHYwEAYHKoZIzj0CAQYFK4EEACIDYgAESkxzYj5bvfqNC2Idp/en9sSqyAtLKnz+\nq36H44w07KJMkauxfXqXussAhpxo2dYE1dXjoVvDuM0zeLyitelQFjaZeuuqxEvn\nAfiTrYLXNHyREZf3E2EEcZ36gObyPj5s\n-----END PUBLIC KEY-----\n"}]}
 ```
 
-This will help improve performance.
+(Note: Adding the pem field is optional but will improve performance.)
 
 
 3. Insert JWKS JSON generated in the step 2 above into the `keys` service helm chart:
